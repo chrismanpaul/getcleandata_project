@@ -5,17 +5,21 @@ This repo contains the scripts necessary for the class project in the Coursera G
 Data Files required
 
 features.txt - this file contains the feature variable labels
+
 activity_labels.txt - this contains the keys for translating the numeric values in the Y_test/train.txt files into the corresponding activities
+
 Test directory which contains the following files with data on subjects selected for the test group:
  - subject_test.txt - this file contains the subject identifiers for the rows of data
  - X_test.txt - this contains the values of the feature variables
  - Y_test.txt - this file contains the numeric activity identifiers for the rows of data
+
 Train directory which contains the following files with data on the subjects selected for the test group:
  - subject_train.txt - this file contains the subject identifiers for the rows of data
  - X_train.txt - this contains the values of the feature variables
  - Y_train.txt - this file contains the numeric activity identifiers for the rows of data
 
 run_analysis.R
+
 This R script file contains the code to analyze the data files listed above and produce the desired output.  It does this in the following general steps:
 1. load necessary packages
 2. read the various data files into R
@@ -29,6 +33,7 @@ This R script file contains the code to analyze the data files listed above and 
 10. writes the output to a text file using write.table
 
 CodeBook.md
+
 The Codebook file contains details on what was done with the data and what each variable measures
 
 
