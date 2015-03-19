@@ -59,7 +59,7 @@ colnames(selected_data) <- new_names
 identifiers <- cbind(selected_data$subject, selected_data$activity)
 cases <- unique(identifiers)
 empties <- vector("numeric", 81*180)
-empty_matrix <- matrix(empties, nrow = 180, ncol = 81)
+empty_matrix <- matrix(empties, nrow = 180, ncol = 68)
 empty_matrix[,1:2] <- cases
 for (num in 1:180) {
     temp_data <- filter(selected_data, subject == empty_matrix[num,1] & 
