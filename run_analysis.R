@@ -33,14 +33,20 @@ total_data <- rbind(total_test, total_train)
 #subject and activity).  Also inserting names for activities, rather than their 
 #corresponding numbers
 
-i <- grep("mean", total_col_names)
-j <- grep("std", total_col_names)
+i <- grep("mean()", total_col_names)
+i_sub <- grep("meanFreq()", total_col_names)
+include <- vector("logical",length(i))
+for (number in 1:length(i)){
+    include[number] <- !(i[number] %in% i_sub)
+}
+i <- i[include]
+j <- grep("std()", total_col_names)
 select_columns <- c(1,2,i,j)
 selected_data <- total_data[,select_columns]
 activities <- act_labels[,2]
 selected_data <- mutate(selected_data, activity = activities[activity])
 
-#maybe something to rename the variables better in here
+#format the variable names to be more readable
 
 new_names <- colnames(selected_data)
 new_names <- str_replace_all(new_names, "[-]", "_")
@@ -58,14 +64,14 @@ colnames(selected_data) <- new_names
 
 identifiers <- cbind(selected_data$subject, selected_data$activity)
 cases <- unique(identifiers)
-empties <- vector("numeric", 81*180)
+empties <- vector("numeric", 68*180)
 empty_matrix <- matrix(empties, nrow = 180, ncol = 68)
 empty_matrix[,1:2] <- cases
 for (num in 1:180) {
     temp_data <- filter(selected_data, subject == empty_matrix[num,1] & 
                             activity == empty_matrix[num,2])
-    temp_avs <- apply(temp_data[,3:81],2,mean)
-    empty_matrix[num,3:81] <- temp_avs
+    temp_avs <- apply(temp_data[,3:68],2,mean)
+    empty_matrix[num,3:68] <- temp_avs
 }
 case_averages <- data.frame(empty_matrix)
 colnames(case_averages) <- colnames(selected_data)
